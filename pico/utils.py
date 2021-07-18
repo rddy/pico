@@ -744,10 +744,24 @@ def is_diag(cov):
   return np.count_nonzero(cov - np.diag(np.diagonal(cov))) == 0
 
 
+def max_ent_disc(z, delta=1e-6, eps=1e-9, infty=99):
+  # maximum entropy discretization (https://openreview.net/pdf?id=ryE98iR5tm)
+  bins = [scipy.stats.norm.ppf(i) for i in np.arange(eps, 1, delta)]
+  disc_z = np.ones(z.shape) * np.nan
+  for j in range(len(z)):
+    # TODO: binary search
+    for i, x in enumerate(bins):
+      next_x = bins[i+1] if i < len(bins) - 1 else infty
+      if (z[j] >= x or (z[j] < x and i == 0)) and (z[j] < next_x or (z[j] >= next_x and i == len(bins) - 1)):
+        disc_z[j] = x
+        break
+  return disc_z
+
+
 def mvn_logpdf(mean, std, x, delta=1e-6):
   z = (x - mean) / std
   return np.sum(np.log(1e-9+scipy.stats.norm.cdf(z+delta)-scipy.stats.norm.cdf(z)))
-
+  #return x.size * np.log(delta)
 
 def apply_mask(real_obs, mask, means, stds, mix_coefs=None, delta=0.1, encoder=None):
   if mix_coefs is None:
@@ -804,6 +818,7 @@ def disc_norm_rv(x, m, s, delta=1e-6):
   z = (x - m) / s
   sgn = 2 * (z >= 0).astype(int) - 1
   z = sgn * np.floor(np.abs(z) / delta) * delta
+  #z = max_ent_disc(z, delta=delta)
   return z * s + m
 
 
