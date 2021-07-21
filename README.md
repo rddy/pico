@@ -1,6 +1,6 @@
 ## PICO - Pragmatic Image Compression
 
-[PICO]() is a lossy image compression algorithm that adapts compression to user behavior, optimizing reconstructions to be useful for downstream tasks instead of preserving visual appearance.
+[PICO](https://sites.google.com/view/pragmatic-compression) is a lossy image compression algorithm that adapts compression to user behavior, optimizing reconstructions to be useful for downstream tasks instead of preserving visual appearance.
 
 ## Usage
 
@@ -17,13 +17,12 @@
 ## Citation
 
 If you find this software useful in your work, we kindly request that you cite the following
-[paper](https://arxiv.org/abs/):
+[paper](https://siddharth.io/files/pico.pdf):
 
 ```
-@article{,
+@article{pico2021,
   title={Pragmatic Image Compression for Human-in-the-Loop Decision-Making},
-  author={},
-  journal={arXiv preprint arXiv:},
+  author={Reddy, Siddharth and Levine, Sergey and Dragan, Anca D.},
   year={2021}
 }
 ```
