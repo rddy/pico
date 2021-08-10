@@ -17,12 +17,13 @@
 ## Citation
 
 If you find this software useful in your work, we kindly request that you cite the following
-[paper](https://siddharth.io/files/pico.pdf):
+[paper](http://arxiv.org/abs/2108.04219):
 
 ```
 @article{pico2021,
   title={Pragmatic Image Compression for Human-in-the-Loop Decision-Making},
   author={Reddy, Siddharth and Levine, Sergey and Dragan, Anca D.},
+  journal={arXiv preprint arXiv:2108.04219},
   year={2021}
 }
 ```
